@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'//nova forma de binding
 }
 
 android {
@@ -30,10 +31,10 @@ android {
         jvmTarget = '1.8'
     }
 
-    //view bind
-    buildFeatures{
-        viewBinding true
-    }
+    //view bind antigo
+    //buildFeatures{
+    //    viewBinding true
+    //}
 }
 
 dependencies {

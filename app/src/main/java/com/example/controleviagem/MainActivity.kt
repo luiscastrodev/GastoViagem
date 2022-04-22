@@ -4,22 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import com.example.controleviagem.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
-    private lateinit var binding: ActivityMainBinding
+    //private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        //binding = ActivityMainBinding.inflate(layoutInflater)
+       // setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
         //toolbar
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(toolbar)
 
-        binding.btnCalcular.setOnClickListener(this)
+        btnCalcular.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -27,23 +27,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private inline fun isValidate(): Boolean =
-                binding.distancia.text.toString() != "" &&
-                binding.preco.text.toString() != "" &&
-                binding.autonomia.text.toString() != "" &&
-                binding.autonomia.text.toString().toFloat() != 0f
+                distancia.text.toString() != "" &&
+                preco.text.toString() != "" &&
+                autonomia.text.toString() != "" &&
+                autonomia.text.toString().toFloat() != 0f
 
     private fun calculate() {
 
         if (!isValidate())
             return Toast.makeText(this,"Todos campos sao obg",Toast.LENGTH_SHORT).show()
 
-        val distance = binding.distancia.text.toString().toFloat()
-        val price = binding.preco.text.toString().toFloat()
-        val autonomy = binding.autonomia.text.toString().toFloat()
+        val distance = distancia.text.toString().toFloat()
+        val price = preco.text.toString().toFloat()
+        val autonomy = autonomia.text.toString().toFloat()
 
         val totalValue = (distance * price) / autonomy
         val totalValueStr = "R$ ${"%.2f".format(totalValue)}"
 
-        binding.total.text = totalValueStr
+        total.text = totalValueStr
     }
 }
